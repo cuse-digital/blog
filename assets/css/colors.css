@@ -3,11 +3,12 @@
         --teals: #007897;
         --oranges: #ea9800;
         --ltorange: #ffcf77;
+        --gray: #444444;
       }
     
     
     body {
-        color: #444444;
+        color: var(--gray);
 		background-color: var(--ltorange);
     }	
     
@@ -27,11 +28,9 @@
     }
 
     #copyright {
-		color: var(--ltorange);
+		color: var(--gray);
     }
-    #copyright a {
-        color: var(--ltorange);
-    }
+   
 
     ul.link-list li {
 		border-top: solid 1px var(--ltorange);

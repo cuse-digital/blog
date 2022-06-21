@@ -1995,3 +1995,4 @@ input, select, textarea {
 	#banner img {width: 100px;}
 	.flexcontainer {display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; color: white; margin: 10px;}
 	#banner a {color: white;}
+	.blog img {max-width: 100%;}
