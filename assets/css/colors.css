@@ -7,7 +7,7 @@
     
     
     body {
-        color: var(--oranges);
+        color: #444444;
 		background-color: var(--ltorange);
     }	
     
@@ -17,7 +17,7 @@
 
     
 	h3, h4 {
-		color: #283121;
+		color: var(--oranges);
     }
 
     #banner {background-color: var(--oranges);}
