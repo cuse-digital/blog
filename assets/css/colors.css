@@ -1,0 +1,38 @@
+
+	:root {
+        --teals: #007897;
+        --oranges: #ffa500;
+        --ltorange: #ffcf77;
+      }
+    
+    
+    body {
+        color: var(--oranges);
+		background-color: var(--ltorange);
+    }	
+    
+    h1, h2, h3, h4 {
+		color: #007897;
+    }
+
+    
+	h3, h4 {
+		color: #283121;
+    }
+
+    #banner {background-color: var(--oranges);}
+
+    a {
+		color: #5d93a2;
+    }
+
+    #copyright {
+		color: var(--ltorange);
+    }
+    #copyright a {
+        color: var(--ltorange);
+    }
+
+    ul.link-list li {
+		border-top: solid 1px var(--ltorange);
+    }
