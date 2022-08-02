@@ -1996,3 +1996,5 @@ input, select, textarea {
 	.flexcontainer {display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; color: white; margin: 10px;}
 	#banner a {color: white;}
 	.blog img {max-width: 100%;}
+	#avatars div img {border: 1px solid #8a5a00;}
+	#blogs {margin-bottom: 20px;;}
