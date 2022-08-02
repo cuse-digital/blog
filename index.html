@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/colors.css" />
 	</head>
-	<body onload="getFileNames();">
+	<body onload="getFileNames(); getBLOGFileNames();">
 		<div id="page-wrapper">
 
 			<!-- Header -->
@@ -95,12 +95,7 @@
 							<div class="col-6 col-12-medium">
 
 								<article class="blog-post">
-									<h2>Experience BLOG</h2>
-									<img src="images/kids-in-computer-lab.jpg" alt="" class="top blog-post-image" />
-									<h3>Week 1 in Review</h3>
-									<h4>August 10th, 2022</h4>
-									<p>The class from week 1 did lots of fun things.  They will write about it here.</p>
-									<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum perspiciatis, laudantium eos qui ducimus reiciendis dolor, error quibusdam est similique earum incidunt nulla excepturi quae, deserunt voluptatibus quia doloremque assumenda.</p>
+									<div id="blogs"></div>
 									<div class="controls">
 										<a href="blog.html" class="button">Read All the BLOG Posts</a>
 									</div>
@@ -173,6 +168,35 @@
 		else {
 			document.getElementById("avatars").innerHTML += '<div class="tablet">' + storedTextFixed + "</div>";
 		}
+		});
+	});
+	}
+</script>
+<script>
+	var numAvatars = 0;
+	async function getBLOGFileNames () {
+		const url = "https://api.github.com/repos/cuse-digital/blog/git/trees/a65eb069c88c832fdcbff5f4128643aeeeaca41c";
+		const response = await fetch(url)
+		const result = await response.json()
+
+		for (const i in result.tree) {
+			if (result.tree[i].path.includes(".html") ) {
+				getBLOGContentsOfFile (result.tree[i].path);
+				break;
+			}
+		}
+	}        
+	
+	function getBLOGContentsOfFile (filename) {
+	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/blogs/" + filename;
+	var storedText;
+	fetch(url)
+	.then(function(response) {
+		numAvatars += 1;
+		response.text().then(function(text) {
+		storedText = text;
+		document.getElementById("blogs").innerHTML += storedText;
+		
 		});
 	});
 	}

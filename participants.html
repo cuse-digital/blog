@@ -107,13 +107,13 @@
 		let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
 		console.log(storedText);
 		if (numAvatars < 7) {
-			document.getElementById("avatars").innerHTML += "<div><a href='bios/" + filename + "'>" + storedTextFixed + "</a></div>";
+			document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename + "'>" + storedTextFixed + "</a></div>";
 		}
 		else if (numAvatars < 13) {
-			document.getElementById("avatars").innerHTML += "<div class='mobile'><a href='bios/" + filename + "'>" + storedTextFixed + "</a></div>";
+			document.getElementById("avatars").innerHTML += "<div class='mobile'><a href='template.html?page=" + filename + "'>" + storedTextFixed + "</a></div>";
 		}
 		else {
-			document.getElementById("avatars").innerHTML += "<div class='tablet'><a href='bios/" + filename + "'>" + storedTextFixed + "</a></div>";
+			document.getElementById("avatars").innerHTML += "<div class='tablet'><a href='stemplate.html?page=" + filename + "'>" + storedTextFixed + "</a></div>";
 		}
 		});
 	});
