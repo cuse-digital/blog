@@ -136,29 +136,36 @@
 <script>
 	var numAvatars = 0;
 	async function getFileNames () {
-		const url = "https://api.github.com/repos/cuse-digital/blog/git/trees/bb8a7db4db300de1427d4ff62725b8e36b873ded";
+		const url = "https://api.github.com/repos/cuse-digital/blog/contents/avatars";
 		const response = await fetch(url)
 		const result = await response.json()
+		
 
-		for (const i in result.tree) {
-			// console.log(result.tree[i].path);
-			if (result.tree[i].path.includes(".html") ) {
-				getContentsOfFile (result.tree[i].path);
+		for(let i = 0; i < result.length; i++) {
+			//console.log(result[i].path);
+			if (result[i].path.includes(".html") ) {
+				getContentsOfFile (result[i].path);
 			}
 		}
 	}        
 	
 	function getContentsOfFile (filename) {
-	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/avatars/" + filename;
+	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/" + filename;
 	var storedText;
+
+	//console.log(url);
+	
+	
 	fetch(url)
 	.then(function(response) {
 		numAvatars += 1;
 		response.text().then(function(text) {
 		storedText = text;
-		let imageName = filename.replace(".html", ".png");
+		let imageName = filename.replace(".html", ".png").replace("avatars/", "");
+		console.log(imageName);
 		let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
-		console.log(storedText);
+		console.log(storedTextFixed);
+		
 		if (numAvatars < 7) {
 			document.getElementById("avatars").innerHTML += "<div>" + storedTextFixed + "</div>";
 		}
@@ -170,7 +177,8 @@
 		}
 		});
 	});
-	}
+}
+		
 </script>
 <script>
 	var numAvatars = 0;
