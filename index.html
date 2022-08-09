@@ -159,7 +159,7 @@
 		fetch(url)
 		.then(function(response) {
 			if (!response.ok) {
-				document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=filename'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";				
+				document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";				
 				numAvatars += 1;
         }
 		else {
