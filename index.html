@@ -159,7 +159,7 @@
 		fetch(url)
 		.then(function(response) {
 			if (!response.ok) {
-				document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";				
+				document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";				
 				numAvatars += 1;
         }
 		else {
@@ -172,13 +172,13 @@
 				// console.log(storedTextFixed);
 				
 				if (numAvatars < 7) {
-					document.getElementById("avatars").innerHTML += "<div>" + storedTextFixed + "</div>";
+					document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'>" + storedTextFixed + "</a></div>";
 				}
 				else if (numAvatars < 13) {
-					document.getElementById("avatars").innerHTML += '<div class="mobile">' + storedTextFixed + "</div>";
+					document.getElementById("avatars").innerHTML += '<div class="mobile"><a href="template.html?page=' + filename.replace("avatars/", "") + '">' + storedTextFixed + "</a></div>";
 				}
 				else {
-					document.getElementById("avatars").innerHTML += '<div class="tablet">' + storedTextFixed + "</div>";
+					document.getElementById("avatars").innerHTML += '<div class="tablet"><a href="template.html?page=' + filename.replace("avatars/", "") + '">' + storedTextFixed + "</a></div>";
 				}
 				});}
 			});
