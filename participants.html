@@ -113,15 +113,8 @@
 		let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
 		console.log(storedTextFixed);
 		
-		if (numAvatars < 7) {
-			document.getElementById("avatars").innerHTML += "<div>" + storedTextFixed + "</div>";
-		}
-		else if (numAvatars < 13) {
-			document.getElementById("avatars").innerHTML += '<div class="mobile">' + storedTextFixed + "</div>";
-		}
-		else {
-			document.getElementById("avatars").innerHTML += '<div class="tablet">' + storedTextFixed + "</div>";
-		}
+		document.getElementById("avatars").innerHTML += "<div>" + storedTextFixed + "</div>";
+		
 		});
 	});
 }

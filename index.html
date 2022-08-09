@@ -143,8 +143,8 @@
 
 		for(let i = 0; i < result.length; i++) {
 			//console.log(result[i].path);
-			if (result[i].path.includes(".html") ) {
-				getContentsOfFile (result[i].path);
+			if (result[i].path.includes(".png") ) {
+				getContentsOfFile (result[i].path.replace(".png", ".html"));
 			}
 		}
 	}        
@@ -156,27 +156,31 @@
 	//console.log(url);
 	
 	
-	fetch(url)
-	.then(function(response) {
-		numAvatars += 1;
-		response.text().then(function(text) {
-		storedText = text;
-		let imageName = filename.replace(".html", ".png").replace("avatars/", "");
-		console.log(imageName);
-		let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
-		console.log(storedTextFixed);
-		
-		if (numAvatars < 7) {
-			document.getElementById("avatars").innerHTML += "<div>" + storedTextFixed + "</div>";
-		}
-		else if (numAvatars < 13) {
-			document.getElementById("avatars").innerHTML += '<div class="mobile">' + storedTextFixed + "</div>";
-		}
+		fetch(url)
+		.then(function(response) {
+			if (!response.ok) {
+				document.getElementById("avatars").innerHTML += "<div><img src='/" + filename.replace(".html", ".png") + "' alt=''><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
+        }
 		else {
-			document.getElementById("avatars").innerHTML += '<div class="tablet">' + storedTextFixed + "</div>";
-		}
-		});
-	});
+			numAvatars += 1;
+			response.text().then(function(text) {
+				storedText = text;
+				let imageName = filename.replace(".html", ".png").replace("avatars/", "");
+				// console.log(imageName);
+				let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
+				// console.log(storedTextFixed);
+				
+				if (numAvatars < 7) {
+					document.getElementById("avatars").innerHTML += "<div>" + storedTextFixed + "</div>";
+				}
+				else if (numAvatars < 13) {
+					document.getElementById("avatars").innerHTML += '<div class="mobile">' + storedTextFixed + "</div>";
+				}
+				else {
+					document.getElementById("avatars").innerHTML += '<div class="tablet">' + storedTextFixed + "</div>";
+				}
+				});}
+			});
 }
 		
 </script>
