@@ -90,10 +90,15 @@
 	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/bios/" + page;
     fetch(url)
 	.then(function(response) {
-		response.text().then(function(text) {
-		storedText = text;
-        document.getElementById("bio").innerHTML = storedText;
-        });
+		if (!response.ok) {
+			document.getElementById("bio").innerHTML = "<p>No bio for this student</p>";
+        }
+		else {
+			response.text().then(function(text) {
+			storedText = text;
+			document.getElementById("bio").innerHTML = storedText;
+			});
+		}
 	});
 
 </script>
