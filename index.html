@@ -159,7 +159,7 @@
 		fetch(url)
 		.then(function(response) {
 			if (!response.ok) {
-				document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'><br>" + filename.replace(".html", "").replace("avatars/", "") + "</a></div>";				
+				document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";				
 				numAvatars += 1;
         }
 		else {
@@ -186,26 +186,24 @@
 		
 </script>
 <script>
-	var numAvatars = 0;
 	async function getBLOGFileNames () {
-		const url = "https://api.github.com/repos/cuse-digital/blog/git/trees/a65eb069c88c832fdcbff5f4128643aeeeaca41c";
+		const url = "https://api.github.com/repos/cuse-digital/blog/contents/blogs";
 		const response = await fetch(url)
 		const result = await response.json()
 
-		for (const i in result.tree) {
-			if (result.tree[i].path.includes(".html") ) {
-				getBLOGContentsOfFile (result.tree[i].path);
-				break;
+		console.log(result);
+
+		let i = 0;
+			if (result[i].path.includes(".html") ) {
+				getBLOGContentsOfFile (result[i].path);
 			}
-		}
 	}        
 	
 	function getBLOGContentsOfFile (filename) {
-	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/blogs/" + filename;
+	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/" + filename;
 	var storedText;
 	fetch(url)
 	.then(function(response) {
-		numAvatars += 1;
 		response.text().then(function(text) {
 		storedText = text;
 		document.getElementById("blogs").innerHTML += storedText;
