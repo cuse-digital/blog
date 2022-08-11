@@ -44,29 +44,6 @@
 								</section>
 
 							</div>
-							<!--
-							<div class="col-4 col-12-medium">
-
-								<section>
-									<h2>BLOG Posts</h2>
-									<ul class="small-image-list">
-										<li id="week2">
-											<h4>Week 2 in Review</h4>
-											<p>Varius nibh. Suspendisse vitae magna eget et amet mollis justo facilisis amet quis.</p>
-											<a href="#week2">jump to this post >></a>
-										</li>
-										<li id="week1">
-											<h4>Week 1 in Review</h4>
-											<p>Vitae magna eget odio amet mollis justo facilisis amet quis. Sed sagittis consequat.</p>
-											<a href="#week1">jump to this post >></a>
-										</li>
-									</ul>
-								</section>
-
-								
-
-							</div>
-							-->
 						</div>
 					</div>
 				</div>
@@ -98,25 +75,25 @@
 	</body>
 </html>
 <script>
-	var numAvatars = 0;
 	async function getBLOGFileNames () {
-		const url = "https://api.github.com/repos/cuse-digital/blog/git/trees/a65eb069c88c832fdcbff5f4128643aeeeaca41c";
+		const url = "https://api.github.com/repos/cuse-digital/blog/contents/blogs";
 		const response = await fetch(url)
 		const result = await response.json()
 
-		for (const i in result.tree) {
-			if (result.tree[i].path.includes(".html") ) {
-				getBLOGContentsOfFile (result.tree[i].path);
+		console.log(result);
+
+		for(let i = 0; i < result.length; i++) {
+			if (result[i].path.includes(".html") ) {
+				getBLOGContentsOfFile (result[i].path);
 			}
 		}
 	}        
 	
 	function getBLOGContentsOfFile (filename) {
-	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/blogs/" + filename;
+	var url = "https://raw.githubusercontent.com/cuse-digital/blog/main/" + filename;
 	var storedText;
 	fetch(url)
 	.then(function(response) {
-		numAvatars += 1;
 		response.text().then(function(text) {
 		storedText = text;
 		document.getElementById("blogs").innerHTML += storedText;
