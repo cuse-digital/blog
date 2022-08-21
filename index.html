@@ -133,7 +133,8 @@
 </html>
 
 <script>
-	var numAvatars = 0;
+	let numAvatars = 0;
+	
 	async function getFileNames () {
 		const url = "https://api.github.com/repos/cuse-digital/blog/contents/avatars";
 		const response = await fetch(url)
@@ -153,42 +154,49 @@
 	var storedText;
 
 	//console.log(url);
-	
-	
+		
 		fetch(url)
 		.then(function(response) {
+			numAvatars += 1;
 			if (!response.ok) {
-				numAvatars += 1;
 				if (numAvatars < 7) {
 					document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
 				}
 				else if (numAvatars < 13) {
-					document.getElementById("avatars").innerHTML += "<div class='tablet'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
-				}
-				else if  (numAvatars < 22) {
 					document.getElementById("avatars").innerHTML += "<div class='mobile'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
 				}
-        }
-		else {
-			numAvatars += 1;
-			response.text().then(function(text) {
-				storedText = text;
-				let imageName = filename.replace(".html", ".png").replace("avatars/", "");
-				// console.log(imageName);
-				let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
-				// console.log(storedTextFixed);
+				else if  (numAvatars < 22) {
+					document.getElementById("avatars").innerHTML += "<div class='tablet'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
+				}
+			}
+			else {
+				response.text().then(function(text) {
+					storedText = text;
+					let imageName = filename.replace(".html", ".png").replace("avatars/", "");
+					let storedTextFixed = storedText.replace(imageName, "avatars/" + imageName);
+					
+					if (numAvatars < 7) {
+						document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'>" + storedTextFixed + "</a></div>";
+					}
+					else if (numAvatars < 13) {
+						document.getElementById("avatars").innerHTML += '<div class="mobile"><a href="template.html?page=' + filename.replace("avatars/", "") + '">' + storedTextFixed + "</a></div>";
+					}
+					else if  (numAvatars < 22) {
+						document.getElementById("avatars").innerHTML += '<div class="tablet"><a href="template.html?page=' + filename.replace("avatars/", "") + '">' + storedTextFixed + "</a></div>";
+					}
+				});
 				
 				if (numAvatars < 7) {
-					document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'>" + storedTextFixed + "</a></div>";
+					document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
 				}
 				else if (numAvatars < 13) {
-					document.getElementById("avatars").innerHTML += '<div class="tablet"><a href="template.html?page=' + filename.replace("avatars/", "") + '">' + storedTextFixed + "</a></div>";
+					document.getElementById("avatars").innerHTML += "<div class='mobile'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
 				}
 				else if  (numAvatars < 22) {
-					document.getElementById("avatars").innerHTML += '<div class="mobile"><a href="template.html?page=' + filename.replace("avatars/", "") + '">' + storedTextFixed + "</a></div>";
+					document.getElementById("avatars").innerHTML += "<div class='tablet'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
 				}
-				});}
-			});
+			}
+		});
 }
 		
 </script>
