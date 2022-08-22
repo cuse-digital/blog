@@ -91,7 +91,7 @@
     fetch(url)
 	.then(function(response) {
 		if (!response.ok) {
-			document.getElementById("bio").innerHTML = "<p>I attended the AT&T Digital Literacy Experience at Bellevue Elementary School. liked learning to code and snack time.</p>";
+			document.getElementById("bio").innerHTML = "<p>I attended the AT&T Digital Literacy Experience at Bellevue Elementary School. I liked learning to code and snack time.</p>";
         }
 		else {
 			response.text().then(function(text) {
