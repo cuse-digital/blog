@@ -185,15 +185,6 @@
 					}
 				});
 				
-				if (numAvatars < 7) {
-					document.getElementById("avatars").innerHTML += "<div><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
-				}
-				else if (numAvatars < 13) {
-					document.getElementById("avatars").innerHTML += "<div class='mobile'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
-				}
-				else if  (numAvatars < 22) {
-					document.getElementById("avatars").innerHTML += "<div class='tablet'><a href='template.html?page=" + filename.replace("avatars/", "") + "'><img src='" + filename.replace(".html", ".png") + "' alt='avatar'></a><br>" + filename.replace(".html", "").replace("avatars/", "") + "</div>";
-				}
 			}
 		});
 }
